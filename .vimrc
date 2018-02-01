@@ -1,3 +1,4 @@
+" SelfDefined remapping keys ---------- {{{
 " make edit vimrc file more confortable
 let mapleader = "-"
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -45,7 +46,9 @@ inoremap '' '
 
 set nocompatible
 filetype off
+" }}}
 
+" Vundle and plugin initializing settings ---------- {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -62,21 +65,16 @@ Plugin 'flazz/vim-colorschemes'
 " all of plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
+" }}}
 
+" Basic vim file settings ---------- {{{
 " use gui color-set scheme
 set termguicolors
 hi clear
 color dracula
 set shortmess=atI
-
-augroup InsertionHighlightGroup
-	autocmd!
-	autocmd InsertLeave * se nocul
-	autocmd InsertEnter * se cul
-augroup end
-
 set showcmd
-set relativenumber
+set number
 set hls
 set is
 set autoread
@@ -86,19 +84,32 @@ set wildmenu
 set wildmode=full
 set history=200
 
+augroup InsertionHighlightGroup
+	autocmd!
+	autocmd InsertLeave * se nocul
+	autocmd InsertEnter * se cul
+augroup end
+
 augroup CodingCommentSettingsGroup
 	autocmd!
 	autocmd FileType python,shell setlocal commentstring=#\ %s
 	autocmd FileType c,cpp,java setlocal commentstring=//\ %s
 augroup end
 
-" settings for the NERDTree
+augroup FileTypeVim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+" Settings for the NERDTree ---------- {{{
 let NERDTreeWinPos="right"
 let NERDTreeWinSize=30
 map <F2> :NERDTreeToggle<CR>
 "autocmd VimEnter * NERDTree
+" }}}
 
-" settings for the taglist
+" Settings for the taglist ---------- {{{
 " set toggle hot-key for the taglist
 nnoremap <silent> <F3> :TlistToggle<CR>
 
@@ -117,8 +128,9 @@ let Tlist_Use_Left_Windo=1
 
 " let the taglist window auto-load
 "let Tlist_Auto_Open=1
+" }}}
 
-" settings for the YouCompleteMe
+" Settings for the YouCompleteMe ---------- {{{
 " let vim's auto-complete function just like the normal IDE
 set completeopt=longest,menu
 
@@ -151,3 +163,4 @@ let g:ycm_complete_in_strings=1
 
 " after input ENTER close the completion window
 let g:ycm_key_list_stop_completion = ['<CR>']
+" }}}
