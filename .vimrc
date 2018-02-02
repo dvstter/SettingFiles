@@ -4,7 +4,7 @@ let mapleader = "-"
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" make enter can insert blank line
+" make enter insert blank line
 nnoremap <CR> o<Esc>
 
 " make quit easier
@@ -13,6 +13,12 @@ nnoremap <CR> o<Esc>
 
 " disable record function and turn it to quit program
 function! QuitProgram()
+	" the file has not been modified, quit directly
+	if &modified == 0
+		:q
+	endif
+
+	" the file has been modifed, ask before quit
 	let choice = confirm("Quit?", "&No\n&Save\n&Discard")
 	if choice == 1
 	elseif choice == 2
@@ -30,8 +36,6 @@ iabbrev ccopy Copyright 2018 Hanlin Yang, all rights reserved.
 " remap the H and L
 nnoremap H 0
 nnoremap L $
-nnoremap 0 <Nop>
-nnoremap $ <Nop>
 
 " make <Esc> more confortable
 inoremap jk <Esc>
@@ -99,11 +103,12 @@ color dracula
 set shortmess=atI
 set showcmd
 set number
-set hls
 set is
 set autoread
 set autoindent
 syntax on
+set hlsearch
+highlight Search guibg=red
 set wildmenu
 set wildmode=full
 set history=200
