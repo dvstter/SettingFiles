@@ -8,11 +8,20 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <CR> o<Esc>
 
 " make quit easier
-nnoremap <leader>q :q!<CR>
-nnoremap <leader>w :x<CR>
+"nnoremap <leader>q :q!<CR>
+"nnoremap <leader>w :x<CR>
 
-" disable the recording function
-nnoremap q <Nop>
+" disable record function and turn it to quit program
+function! QuitProgram()
+	let choice = confirm("Quit?", "&No\n&Save\n&Discard")
+	if choice == 1
+	elseif choice == 2
+		:wq
+	else
+		:q!
+	endif
+endfunction
+nnoremap q :call QuitProgram()<Esc>
 
 " make some abbreviations
 iabbrev @@ p1usj4de@163.com
@@ -21,34 +30,49 @@ iabbrev ccopy Copyright 2018 Hanlin Yang, all rights reserved.
 " remap the H and L
 nnoremap H 0
 nnoremap L $
+nnoremap 0 <Nop>
+nnoremap $ <Nop>
 
 " make <Esc> more confortable
 inoremap jk <Esc>
 
-" settings for auto insert parenthesis
-inoremap { {}<Left>
-inoremap {{ {
-inoremap {} {}
+augroup AutoInsertParenthesis
+	autocmd!
+	inoremap { {}<Left>
+	inoremap {{ {
+	inoremap {} {}
 
-inoremap [ []<Left>
-inoremap [[ [
-inoremap [] []
+	inoremap [ []<Left>
+	inoremap [[ [
+	inoremap [] []
 
-inoremap ( ()<Left>
-inoremap (( (
-inoremap () ()
+	inoremap ( ()<Left>
+	inoremap (( (
+	inoremap () ()
 
-inoremap " ""<Left>
-inoremap "" "
+	inoremap " ""<Left>
+	inoremap "" "
 
-inoremap ' ''<Left>
-inoremap '' '
+	inoremap ' ''<Left>
+	inoremap '' '
 
-set nocompatible
-filetype off
+	vnoremap ( c()<Esc>P
+	vnoremap " c""<Esc>P
+	vnoremap ' c''<Esc>P
+augroup end
+
+augroup SimpleCommentTool
+	autocmd!
+	autocmd FileType python nnoremap # 0i#<Esc>0
+	autocmd FileType shell nnoremap " 0i"<Esc>0
+	autocmd FileType c,cpp nnoremap / 0i//<Esc>0
+	autocmd FileType vim nnoremap " 0i"<Esc>0
+augroup end
 " }}}
 
 " Vundle and plugin initializing settings ---------- {{{
+set nocompatible
+filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -84,19 +108,19 @@ set wildmenu
 set wildmode=full
 set history=200
 
-augroup InsertionHighlightGroup
+augroup HighlightInsertionLine
 	autocmd!
 	autocmd InsertLeave * se nocul
 	autocmd InsertEnter * se cul
 augroup end
 
-augroup CodingCommentSettingsGroup
+augroup SetProgrammingComment
 	autocmd!
 	autocmd FileType python,shell setlocal commentstring=#\ %s
 	autocmd FileType c,cpp,java setlocal commentstring=//\ %s
 augroup end
 
-augroup FileTypeVim
+augroup SetVimFoldMethod
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
 augroup END
