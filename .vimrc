@@ -4,8 +4,9 @@ let mapleader = "-"
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" make enter insert blank line
+" make enter and space to insert blank
 nnoremap <CR> o<Esc>
+nnoremap <Space> i<Space><Esc>l
 
 " make quit easier
 "nnoremap <leader>q :q!<CR>
@@ -54,6 +55,10 @@ augroup AutoInsertParenthesis
 	inoremap (( (
 	inoremap () ()
 
+	inoremap < <><Left>
+	inoremap << <
+	inoremap <> <>
+
 	inoremap " ""<Left>
 	inoremap "" "
 
@@ -63,6 +68,7 @@ augroup AutoInsertParenthesis
 	vnoremap ( c()<Esc>P
 	vnoremap " c""<Esc>P
 	vnoremap ' c''<Esc>P
+	vnoremap < c<><Esc>P
 augroup end
 
 augroup SimpleCommentTool
