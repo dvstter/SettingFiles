@@ -34,9 +34,11 @@ nnoremap q :call QuitProgram()<Esc>
 iabbrev @@ p1usj4de@163.com
 iabbrev ccopy Copyright 2018 Hanlin Yang, all rights reserved.
 
-" remap the H and L
+" remap the H, L, and make delete more easier
 nnoremap H 0
 nnoremap L $
+nnoremap dH d0
+nnoremap dL d$
 
 " make <Esc> more confortable
 inoremap jk <Esc>
