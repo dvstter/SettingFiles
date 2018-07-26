@@ -1,0 +1,9 @@
+# Use ss to get directory server
+HTTPSProxy 127.0.0.1:1087
+
+# Will never use these country's nodes
+ExcludeNodes {cn},{hk},{mo},{kp},{ir},{sy},{pk},{cu},{vn}
+strictnodes 1
+
+# As said
+RunAsDaemon 1
