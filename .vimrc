@@ -1,4 +1,9 @@
 " SelfDefined remapping keys ---------- {{{
+" this line just for fix some bugs on python3 imp module problem
+if has("python3")
+	silent! python3 1
+endif
+
 " make edit vimrc file more confortable
 let mapleader = "-"
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -120,6 +125,8 @@ highlight Search guibg=red
 set wildmenu
 set wildmode=full
 set history=200
+" to be consistent with PEP 8
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 augroup HighlightInsertionLine
 	autocmd!
