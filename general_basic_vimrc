@@ -1,0 +1,158 @@
+" SelfDefined remapping keys ---------- {{{
+" make edit vimrc file more confortable
+let mapleader = "-"
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" make enter and space to insert blank
+nnoremap <CR> o<Esc>
+nnoremap <Space> i<Space><Esc>l
+
+" make quit easier
+"nnoremap <leader>q :q!<CR>
+"nnoremap <leader>w :x<CR>
+
+" disable record function and turn it to quit program
+function! QuitProgram()
+	" the file has not been modified, quit directly
+	if &modified == 0
+		:q
+	endif
+
+	" the file has been modifed, ask before quit
+	let choice = confirm("Quit?", "&No\n&Save\n&Discard")
+	if choice == 1
+	elseif choice == 2
+		:wq
+	else
+		:q!
+	endif
+endfunction
+nnoremap q :call QuitProgram()<Esc>
+
+" make <Esc> more confortable
+inoremap jk <Esc>
+
+augroup AutoInsertParenthesis
+	autocmd!
+	inoremap { {}<Left>
+	inoremap {{ {
+	inoremap {} {}
+
+	inoremap [ []<Left>
+	inoremap [[ [
+	inoremap [] []
+
+	inoremap ( ()<Left>
+	inoremap (( (
+	inoremap () ()
+
+	inoremap < <><Left>
+	inoremap << <
+	inoremap <> <>
+
+	inoremap " ""<Left>
+	inoremap "" "
+
+	inoremap ' ''<Left>
+	inoremap '' '
+
+	vnoremap ( c()<Esc>P
+	vnoremap " c""<Esc>P
+	vnoremap ' c''<Esc>P
+	vnoremap < c<><Esc>P
+augroup end
+
+augroup SimpleCommentTool
+	autocmd!
+	autocmd FileType python nnoremap # 0i#<Esc>0
+	autocmd FileType shell nnoremap " 0i"<Esc>0
+	autocmd FileType c,cpp nnoremap / 0i//<Esc>0
+	autocmd FileType vim nnoremap " 0i"<Esc>0
+augroup end
+" }}}
+
+" Vundle and plugin initializing settings ---------- {{{
+set nocompatible
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
+
+" install other plugins here
+Bundle 'taglist.vim'
+Bundle 'scrooloose/nerdtree'
+Plugin 'flazz/vim-colorschemes'
+
+" all of plugins must be added before the following line
+call vundle#end()
+filetype plugin indent on
+" }}}
+
+" Basic vim file settings ---------- {{{
+" use gui color-set scheme
+hi clear
+color dracula
+set shortmess=atI
+set showcmd
+set number
+set is
+set autoread
+set autoindent
+syntax on
+set hlsearch
+highlight Search guibg=red
+set wildmenu
+set wildmode=full
+set history=200
+" to be consistent with PEP 8
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+augroup HighlightInsertionLine
+	autocmd!
+	autocmd InsertLeave * se nocul
+	autocmd InsertEnter * se cul
+augroup end
+
+augroup SetProgrammingComment
+	autocmd!
+	autocmd FileType python,shell setlocal commentstring=#\ %s
+	autocmd FileType c,cpp,java setlocal commentstring=//\ %s
+augroup end
+
+augroup SetVimFoldMethod
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+" Settings for the NERDTree ---------- {{{
+let NERDTreeWinPos="right"
+let NERDTreeWinSize=30
+map <F2> :NERDTreeToggle<CR>
+"autocmd VimEnter * NERDTree
+" }}}
+
+" Settings for the taglist ---------- {{{
+" set toggle hot-key for the taglist
+nnoremap <silent> <F3> :TlistToggle<CR>
+
+let Tlist_Ctags_Cmd="ctags"
+" only show the current file's taglist
+let Tlist_Show_One_File=1
+
+" set taglist window width
+let Tlist_WinWidt=28
+
+" if taglist is the last window, quit the vim
+let Tlist_Exit_OnlyWindow=1
+
+" let the taglist window shows on the left
+let Tlist_Use_Left_Windo=1
+
+" let the taglist window auto-load
+"let Tlist_Auto_Open=1
+" }}}
