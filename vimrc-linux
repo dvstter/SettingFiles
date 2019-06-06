@@ -87,7 +87,6 @@ augroup end
 " use gui color-set scheme
 set encoding=utf-8
 set backspace=indent,eol,start " more powerful backspacing
-set termguicolors
 hi clear
 set shortmess=atI
 set showcmd
