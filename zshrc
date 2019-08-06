@@ -1,18 +1,34 @@
 export HOMEBREW_NO_AUTO_UPDATE=true
 
+# Add GOPATH directory
+GOPATH=/Users/yanghanlin/gopath
+export PATH=$PATH:$GOPATH/bin
+
+# Add Metasploit directory
+export PATH=$PATH:/opt/metasploit-framework/bin
+
+# Add chrome driver support
+export PATH=$PATH:/Users/yanghanlin/Library
+
+# Re-alias for some applications
+alias vim="/usr/local/Cellar/macvim/8.1-151/MacVim.app/Contents/bin/vim"
+alias pip="/usr/local/bin/pip3"
+
 # Make some alias commands here
 alias cls="clear"
 alias vi="vim"
-alias vim="/usr/local/Cellar/macvim/8.0-144_3/MacVim.app/Contents/bin/vim"
 alias rm="rm -rf"
 alias cat="cat -b"
+alias subl="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
 alias du="du -h"
 alias grep="grep --color=auto"
 alias cd.="cd .."
+alias python="/usr/local/bin/python3"
+alias aterm="open /Applications/Utilities/Terminal.app"
 
 # Simplify the shutdown and restart procedure
-alias shu="echo 'evidence' | sudo -S shutdown -h now"
-alias res="echo 'evidence' | sudo -S shutdown -r now"
+alias shu="echo 'Congr4tul4tions' | sudo -S shutdown -h now"
+alias res="echo 'Congr4tul4tions' | sudo -S shutdown -r now"
 
 setopt AUTO_CD
 
