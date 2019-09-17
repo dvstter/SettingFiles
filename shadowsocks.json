@@ -1,6 +1,10 @@
 {
     "server":"::",
-    "port_password":{"7777":"52xsmzxy"},
+    "port_password":{
+        "7777":"52xsmzxy",
+        "8888": "wangdiaoxsm",
+        "9999": "gayhubisgood"
+                    },
     "timeout":300,
     "method":"aes-256-cfb",
     "fast_open":false
