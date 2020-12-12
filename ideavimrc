@@ -1,0 +1,124 @@
+" SelfDefined remapping keys ---------- {{{
+" this line just for fix some bugs on python3 imp module problem
+if has("python3")
+	silent! python3 1
+endif
+
+" make edit vimrc file more confortable
+let mapleader = "-"
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" make enter and space to insert blank
+nnoremap <CR> o<Esc>
+nnoremap <Space> i<Space><Esc>l
+
+" make quit easier
+"nnoremap <leader>q :q!<CR>
+"nnoremap <leader>w :x<CR>
+
+" disable record function and turn it to quit program
+function! QuitProgram()
+	" the file has not been modified, quit directly
+	if &modified == 0
+		:q
+	endif
+
+	" the file has been modifed, ask before quit
+	let choice = confirm("Quit?", "&No\n&Save\n&Discard")
+	if choice == 1
+	elseif choice == 2
+		:wq
+	else
+		:q!
+	endif
+endfunction
+nnoremap q :call QuitProgram()<Esc>
+
+" make some abbreviations
+iabbrev @@ p1usj4de@163.com
+iabbrev ccopy Copyright 2018 Hanlin Yang, all rights reserved.
+
+" remap the H, L, and make delete more easier
+nnoremap H 0
+nnoremap L $
+nnoremap dH d0
+nnoremap dL d$
+nnoremap X dt)
+
+" make python can comment or indent one sentence
+augroup PythonAutomation
+    autocmd!
+    autocmd FileType python nnoremap <Tab> ^i<Tab><Esc>j
+    autocmd FileType python nnoremap # ^i#<Esc>j
+augroup end
+
+augroup AutoInsertParenthesis
+	autocmd!
+	inoremap { {}<Left>
+	inoremap {{ {
+	inoremap {} {}
+
+	inoremap [ []<Left>
+	inoremap [[ [
+	inoremap [] []
+
+	inoremap ( ()<Left>
+	inoremap (( (
+	inoremap () ()
+
+	inoremap " ""<Left>
+	inoremap "" "
+
+	inoremap ' ''<Left>
+	inoremap '' '
+
+	vnoremap ( c()<Esc>P
+	vnoremap " c""<Esc>P
+	vnoremap ' c''<Esc>P
+	vnoremap < c<><Esc>P
+augroup end
+
+" make <Esc> more confortable
+inoremap jk <Esc>
+" }}}
+
+" Basic vim file settings ---------- {{{
+" use gui color-set scheme
+set encoding=utf-8
+set backspace=indent,eol,start " more powerful backspacing
+set termguicolors
+hi clear
+colorscheme wombat
+set shortmess=atI
+set showcmd
+set number
+set is
+set autoread
+set autoindent
+syntax on
+set hlsearch
+highlight Search guibg=red
+set wildmenu
+set wildmode=full
+set history=200
+" to be consistent with PEP 8
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+augroup HighlightInsertionLine
+	autocmd!
+	autocmd InsertLeave * se nocul
+	autocmd InsertEnter * se cul
+augroup end
+
+augroup SetProgrammingComment
+	autocmd!
+	autocmd FileType python,shell setlocal commentstring=#\ %s
+	autocmd FileType c,cpp,java setlocal commentstring=//\ %s
+augroup end
+
+augroup SetVimFoldMethod
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}

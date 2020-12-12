@@ -1,5 +1,14 @@
 export HOMEBREW_NO_AUTO_UPDATE=true
 
+# Add macvim alias
+if [ ! -n "$BREW_VIM_ADD" ]; then
+    v=$(brew list --versions macvim)
+    n=$(echo $v | awk '{print $2}')
+    export BREW_VIM_ADD=/usr/local/Cellar/macvim/$n/MacVim.app/Contents/bin/vim
+fi
+alias vim=$BREW_VIM_ADD
+
+
 # Add GOPATH directory
 GOPATH=/Users/yanghanlin/gopath
 export PATH=$PATH:$GOPATH/bin
@@ -11,7 +20,6 @@ export PATH=$PATH:/opt/metasploit-framework/bin
 export PATH=$PATH:/Users/yanghanlin/Library
 
 # Re-alias for some applications
-alias vim="/usr/local/Cellar/macvim/8.1-151/MacVim.app/Contents/bin/vim"
 alias pip="/usr/local/bin/pip3"
 
 # Make some alias commands here
@@ -19,7 +27,7 @@ alias cls="clear"
 alias vi="vim"
 alias rm="rm -rf"
 alias cat="cat -b"
-alias subl="/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias du="du -h"
 alias grep="grep --color=auto"
 alias cd.="cd .."

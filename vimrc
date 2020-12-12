@@ -78,12 +78,10 @@ augroup AutoInsertParenthesis
 	vnoremap < c<><Esc>P
 augroup end
 
-augroup SimpleCommentTool
+augroup PythonAutomation
 	autocmd!
-	autocmd FileType python nnoremap " 0i#<Esc>0
-	autocmd FileType shell nnoremap " 0i"<Esc>0
-	autocmd FileType c,cpp nnoremap " 0i//<Esc>0
-	autocmd FileType vim nnoremap " 0i"<Esc>0
+	autocmd FileType python nnoremap # ^i#<Esc>j
+        autocmd FileType python nnoremap <Tab> ^i<Tab><Esc>j
 augroup end
 " }}}
 
@@ -101,8 +99,9 @@ Plugin 'VundleVim/Vundle.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'taglist.vim'
 Bundle 'scrooloose/nerdtree'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'rdnetto/YCM-Generator'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'JuliaEditorSupport/julia-vim'
 
 " all of plugins must be added before the following line
 call vundle#end()
@@ -115,7 +114,7 @@ set encoding=utf-8
 set backspace=indent,eol,start " more powerful backspacing
 set termguicolors
 hi clear
-color dracula
+colorscheme wombat
 set shortmess=atI
 set showcmd
 set number
