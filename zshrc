@@ -1,25 +1,8 @@
+export ZSH_DISABLE_COMPFIX=true
 export HOMEBREW_NO_AUTO_UPDATE=true
 
-# Add macvim alias
-if [ ! -n "$BREW_VIM_ADD" ]; then
-    v=$(brew list --versions macvim)
-    n=$(echo $v | awk '{print $2}')
-    export BREW_VIM_ADD=/usr/local/Cellar/macvim/$n/MacVim.app/Contents/bin/vim
-fi
-alias vim=$BREW_VIM_ADD
-
-
-# Add GOPATH directory
-GOPATH=/Users/yanghanlin/gopath
-export PATH=$PATH:$GOPATH/bin
-
-# Add Metasploit directory
-export PATH=$PATH:/opt/metasploit-framework/bin
-
-# Add chrome driver support
-export PATH=$PATH:/Users/yanghanlin/Library
-
 # Re-alias for some applications
+alias vim="/usr/local/Cellar/macvim/8.2-163_2/MacVim.app/Contents/bin/vim"
 alias pip="/usr/local/bin/pip3"
 
 # Make some alias commands here
@@ -29,14 +12,17 @@ alias rm="rm -rf"
 alias cat="cat -b"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias du="du -h"
-alias grep="grep --color=auto"
+alias grep="grep --color=auto -E"
 alias cd.="cd .."
 alias python="/usr/local/bin/python3"
-alias aterm="open /Applications/Utilities/Terminal.app"
 
 # Simplify the shutdown and restart procedure
-alias shu="echo 'Congr4tul4tions' | sudo -S shutdown -h now"
-alias res="echo 'Congr4tul4tions' | sudo -S shutdown -r now"
+alias shu="echo 'wangdiaoxsm' | sudo -S shutdown -h now"
+alias res="echo 'wangdiaoxsm' | sudo -S shutdown -r now"
+alias wifi="echo 'wangdiaoxsm' | sudo -S shutdown -h +120"
+
+easyfind() {find . -iname "*${1}*"}
+alias e=easyfind
 
 setopt AUTO_CD
 
@@ -108,7 +94,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions zsh-syntax-highlighting extract git textmate ruby autojump osx z mvn gradle)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting extract git textmate ruby autojump osx z mvn)
 
 source $ZSH/oh-my-zsh.sh
 
