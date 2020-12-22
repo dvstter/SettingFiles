@@ -45,12 +45,16 @@ nnoremap L $
 nnoremap dH d0
 nnoremap dL d$
 nnoremap X dt)
+vnoremap H 0
+vnoremap L $
 
 " make python can comment or indent one sentence
 augroup PythonAutomation
-    autocmd!
-    autocmd FileType python nnoremap <Tab> ^i<Tab><Esc>j
-    autocmd FileType python nnoremap # ^i#<Esc>j
+    autocmd! " delete all commands in this group
+    "autocmd FileType python nnoremap <Tab> ^i<Tab><Esc>j
+    "autocmd FileType python nnoremap # ^i#<Esc>j
+    nnoremap <Tab> ^i<Tab><Esc>j
+    nnoremap # ^i#<Esc>j
 augroup end
 
 augroup AutoInsertParenthesis
@@ -72,6 +76,7 @@ augroup AutoInsertParenthesis
 
 	inoremap ' ''<Left>
 	inoremap '' '
+        inoremap ''' ''''''<Left><Left><Left>
 
 	vnoremap ( c()<Esc>P
 	vnoremap " c""<Esc>P
