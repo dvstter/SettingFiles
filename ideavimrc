@@ -57,32 +57,31 @@ augroup PythonAutomation
     nnoremap # ^i#<Esc>j
 augroup end
 
-augroup AutoInsertParenthesis
-	autocmd!
-	inoremap { {}<Left>
-	inoremap {{ {
-	inoremap {} {}
+"augroup AutoInsertParenthesis
+	"autocmd!
+	"inoremap { {}<Left>
+	"inoremap {{ {
+	"inoremap {} {}
 
-	inoremap [ []<Left>
-	inoremap [[ [
-	inoremap [] []
+	"inoremap [ []<Left>
+	"inoremap [[ [
+	"inoremap [] []
 
-	inoremap ( ()<Left>
-	inoremap (( (
-	inoremap () ()
+	"inoremap ( ()<Left>
+	"inoremap (( (
+	"inoremap () ()
 
-	inoremap " ""<Left>
-	inoremap "" "
+	"inoremap " ""<Left>
+	"inoremap "" "
 
-	inoremap ' ''<Left>
-	inoremap '' '
-        inoremap ''' ''''''<Left><Left><Left>
+	"inoremap ' ''<Left>
+	"inoremap '' '
 
-	vnoremap ( c()<Esc>P
-	vnoremap " c""<Esc>P
-	vnoremap ' c''<Esc>P
-	vnoremap < c<><Esc>P
-augroup end
+	"vnoremap ( c()<Esc>P
+	"vnoremap " c""<Esc>P
+	"vnoremap ' c''<Esc>P
+	"vnoremap < c<><Esc>P
+"augroup end
 
 " make <Esc> more confortable
 inoremap jk <Esc>
@@ -108,7 +107,7 @@ set wildmenu
 set wildmode=full
 set history=200
 " to be consistent with PEP 8
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
 
 augroup HighlightInsertionLine
 	autocmd!
