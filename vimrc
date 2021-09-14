@@ -80,9 +80,9 @@ augroup end
 
 augroup PythonAutomation
 	autocmd!
-        autocmd BufNewFile,BufRead *.ipynb set filetype=jupyter
-	autocmd FileType python,jupyter nnoremap # ^i#<Esc>j
-        autocmd FileType python,jupyter nnoremap <Tab> ^i<Tab><Esc>j
+  autocmd BufNewFile,BufRead *.ipynb set filetype=jupyter
+	autocmd FileType python,jupyter nnoremap # 0i#<Esc>j
+  autocmd FileType python,jupyter nnoremap <Tab> ^i<Tab><Esc>j
 augroup end
 " }}}
 
