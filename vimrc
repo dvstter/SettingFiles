@@ -129,7 +129,7 @@ set wildmenu
 set wildmode=full
 set history=200
 " to be consistent with PEP 8
-set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
+set tabstop=2 softtabstop=2 expandtab shiftwidth=2 expandtab
 
 augroup HighlightInsertionLine
 	autocmd!

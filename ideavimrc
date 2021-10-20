@@ -51,8 +51,8 @@ vnoremap L $
 " make python can comment or indent one sentence
 augroup PythonAutomation
     autocmd! " delete all commands in this group
-    nnoremap <Tab> ^i<Tab><Esc>j
-    nnoremap # ^0#<Esc>j
+    nnoremap <Tab> ^i<Space><Space><Esc>j
+    nnoremap # 0i#<Esc>j
 augroup end
 
 "augroup AutoInsertParenthesis
@@ -105,7 +105,7 @@ set wildmenu
 set wildmode=full
 set history=200
 " to be consistent with PEP 8
-set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
+set tabstop=2 softtabstop=2 expandtab shiftwidth=2 expandtab
 
 augroup HighlightInsertionLine
 	autocmd!
