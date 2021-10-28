@@ -44,6 +44,7 @@ nnoremap H 0
 nnoremap L $
 nnoremap dH d0
 nnoremap dL d$
+nnoremap cH c0
 
 " make <Esc> more confortable
 inoremap jk <Esc>
